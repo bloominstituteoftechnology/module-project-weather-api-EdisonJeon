@@ -57,6 +57,9 @@ async function moduleProject4() {
         "#todayStats div:nth-child(4)"
       ).textContent = `Wind: ${data.current.wind_speed} m/s`;
 
+      const getWeekday = (date) => {
+        return date;
+      };
       data.forecast.daily.forEach((day, idx) => {
         let card = document.querySelectorAll(".next-day")[idx];
 
@@ -65,7 +68,7 @@ async function moduleProject4() {
         let minMax = card.children[2];
         let precip = card.children[3];
 
-        weekday.textContent = day.date;
+        weekday.textContent = getWeekday(day.date);
         apparent.textContent = descriptions.find(
           (elem) => elem[0] === day.weather_description
         )[1];
@@ -76,8 +79,9 @@ async function moduleProject4() {
       });
 
       document.querySelector(
-        "#location div:nth-child(1)"
-      ).textContent = `${data.location.city}`;
+        "#location"
+      ).firstElementChild.textContent = `${data.location.city}`;
+      console.log(document.querySelector("#location"));
       document.querySelector(
         "#location div:nth-child(2)"
       ).textContent = `${data.location.country}`;
